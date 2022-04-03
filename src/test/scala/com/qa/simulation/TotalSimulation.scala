@@ -1,11 +1,23 @@
 package com.qa.simulation
 
 import com.qa.BaseSimulation
-import com.qa.scenario.VisitScenario
+import com.qa.scenario.{CompleteCheckoutScenario, SuccessfulLoginScenario, UnsuccessfulLoginScenario, VisitScenario}
 
 class TotalSimulation extends BaseSimulation {
 
   setUp(
     VisitScenario().populationBuilder
+  )
+
+  setUp(
+    UnsuccessfulLoginScenario().populationBuilder
+  )
+
+  setUp(
+    SuccessfulLoginScenario().populationBuilder
+  )
+
+  setUp(
+    CompleteCheckoutScenario().populationBuilder
   )
 }

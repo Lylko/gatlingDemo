@@ -1,8 +1,8 @@
 package com.qa.scenario
 
-import io.gatling.core.Predef._
 import com.qa.BaseSimulation
 import com.qa.models.{Catalog, Checkout, HomePage}
+import io.gatling.core.Predef._
 
 import scala.concurrent.duration.DurationInt
 
@@ -22,6 +22,6 @@ case class CompleteCheckoutScenario() extends BaseSimulation {
       .pause(2)
       .exec(Checkout.completeCheckout)
 
-  setUp(checkoutScenario.inject(constantUsersPerSec(5) during(10.seconds))
-    .protocols(httpProtocol))
+  val populationBuilder = setInjectionProfile(checkoutScenario, getClass.getSimpleName).protocols(httpProtocol)
+  setUp(populationBuilder)
 }

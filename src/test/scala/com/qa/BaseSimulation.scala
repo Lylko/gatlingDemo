@@ -8,6 +8,9 @@ import scala.concurrent.duration.DurationInt
 
 class BaseSimulation extends Simulation {
 
+  val csvFeederLoginSuccessful = csv("data/loginSuccessful.csv").circular
+  val csvFeederLoginWithFails = csv("data/loginFailed.csv").circular
+
   val durationMeasurements = "seconds"
   val simulationDuration = 2
   val loadUsers = 1

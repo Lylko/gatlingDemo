@@ -17,8 +17,6 @@ case class SuccessfulLoginScenario() extends BaseSimulation {
       .feed(csvFeederLoginSuccessful)
       .exec(Login.loginSuccessful).exitHereIfFailed
 
-  setUp(
-    successfulScn.inject(constantUsersPerSec(5) during(10.seconds))
-      .protocols(httpProtocol)
-    )
+  val populationBuilder = setInjectionProfile(successfulScn, getClass.getSimpleName).protocols(httpProtocol)
+  setUp(populationBuilder)
 }

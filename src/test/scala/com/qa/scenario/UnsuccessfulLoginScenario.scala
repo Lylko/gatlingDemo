@@ -17,10 +17,6 @@ case class UnsuccessfulLoginScenario() extends BaseSimulation {
       feed(csvFeederLoginWithFails)
       .exec(Login.loginUnsuccessful).exitHereIfFailed
 
-  setUp(
-    unsuccessfulScn.inject(
-      rampUsers(5) during(10.seconds),
-      constantUsersPerSec(5) during(10.seconds))
-      .protocols(httpProtocol)
-    )
+  val populationBuilder = setInjectionProfile(unsuccessfulScn, getClass.getSimpleName).protocols(httpProtocol)
+  setUp(populationBuilder)
 }
