@@ -8,19 +8,4 @@ class TotalSimulation extends BaseSimulation {
   setUp(
     VisitScenario().populationBuilder
   )
-
-<<<<<<< Updated upstream
-  setUp(
-    UnsuccessfulLoginScenario().populationBuilder
-  )
-
-  setUp(
-    SuccessfulLoginScenario().populationBuilder
-  )
-
-  setUp(
-    CompleteCheckoutScenario().populationBuilder
-  )
-=======
->>>>>>> Stashed changes
 }

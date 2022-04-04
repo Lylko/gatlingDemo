@@ -23,7 +23,7 @@ object CatalogPage {
       exec(http("Load Product Page")
         .get("#{casualBlackGlassesButton}")
         .check(status.is(200))
-        .check(css("a[href='/cart/add/17']", data-id).saveAs("addToCart"))
+        .check(css("a[href='/cart/add/17']", "data-id").saveAs("addToCart"))
       )
         .pause(2)
     }
