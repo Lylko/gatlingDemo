@@ -9,5 +9,4 @@ object HomePage {
     http("getHomePage")
       .get("/")
       .check(status.is(200))
-
 }
