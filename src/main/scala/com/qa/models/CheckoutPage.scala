@@ -11,11 +11,8 @@ object CheckoutPage {
         http("Load Cart Page")
           .get("#{viewCart}")
           .check(status.is(200))
-          .check(css("a[href='#']").saveAs("checkoutButton"))
-      ).exec(session => {
-        print(session("checkoutButton").as[String])
-        session
-      })
+          .check(css("a[href='#']", "class").saveAs("checkoutButton"))
+      )
         .pause(2)
   }
   def completeCheckout = {
@@ -23,7 +20,7 @@ object CheckoutPage {
       http("Checkout Cart")
         .get("#{checkoutButton}")
         .check(status.is(200))
-        .check(css("display-5").is("Thanks for your order! See you soon!"))
+        .check(css("h5.display-5").is("Thanks for your order! See you soon!"))
     )
       .pause(2)
   }

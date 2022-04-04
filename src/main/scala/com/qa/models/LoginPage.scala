@@ -9,12 +9,8 @@ object LoginPage {
       exec(http("Load Login Page")
         .get("/#{loginButton}")
         .check(status.is(200))
-        .check(substring("Username:"))
-      .check(css("input[name='username']").saveAs("loginForm"))
-      ).exec(session => {
-        print(session("loginForm").as[String])
-        session
-      })
+      .check(css("form[method='post']", "action").saveAs("loginForm"))
+      )
         .pause(2)
 
   lazy val loginSuccessful =
