@@ -10,8 +10,8 @@ case class SuccessfulLoginScenario() extends BaseSimulation {
 
   val successfulScn =
     scenario(getClass.getSimpleName)
-      .exec(HomePage.getHomePage)
-      .exec(HomePage.goToLoginPage)
+      .exec(HomePage.getHomePage).exitHereIfFailed
+      .exec(LoginPage.goToLoginPage).exitHereIfFailed
       .feed(csvFeederLoginSuccessful)
       .exec(LoginPage.loginSuccessful).exitHereIfFailed
 

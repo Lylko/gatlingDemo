@@ -10,12 +10,12 @@ case class CompleteCheckoutScenario() extends BaseSimulation {
 
   val checkoutScenario =
     scenario(getClass.getSimpleName)
-      .exec(HomePage.getHomePage)
-      .exec(CatalogPage.Category.view)
-      .exec(CatalogPage.Product.view)
-      .exec(CatalogPage.Product.add)
-      .exec(CheckoutPage.viewCart)
-      .exec(CheckoutPage.completeCheckout)
+      .exec(HomePage.getHomePage).exitHereIfFailed
+      .exec(CatalogPage.Category.view).exitHereIfFailed
+      .exec(CatalogPage.Product.view).exitHereIfFailed
+      .exec(CatalogPage.Product.add).exitHereIfFailed
+      .exec(CheckoutPage.viewCart).exitHereIfFailed
+      .exec(CheckoutPage.completeCheckout).exitHereIfFailed
 
   val populationBuilder = setInjectionProfile(checkoutScenario, getClass.getSimpleName).protocols(httpProtocol)
   setUp(populationBuilder)

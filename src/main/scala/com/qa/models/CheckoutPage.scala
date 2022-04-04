@@ -11,7 +11,7 @@ object CheckoutPage {
         http("Load Cart Page")
           .get("#{viewCart}")
           .check(status.is(200))
-          .check(css("a[href='#']", "class").saveAs("checkoutButton"))
+          .check(css("a.checkout", "href").saveAs("checkoutButton"))
       )
         .pause(2)
   }

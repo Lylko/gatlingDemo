@@ -9,12 +9,9 @@ object HomePage {
     http("getHomePage")
       .get("/")
       .check(status.is(200))
+      .check(css("#_csrf", "content").saveAs("crsfValue"))
+      .check(css("ul.float-right.navbar-nav > li:nth-child(2) > a", "href").saveAs("loginButton"))
+      .check(css("ul.list-group > li:nth-child(1) > a", "href").saveAs("allCategoriesButton"))
 
-  lazy val goToLoginPage =
-    exec(http("Load Login Page")
-      .get("/#{loginButton}")
-      .check(status.is(200))
-      .check(css("form[method='post']", "action").saveAs("loginForm"))
-    )
-      .pause(2)
+
 }

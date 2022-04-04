@@ -12,7 +12,7 @@ object CatalogPage {
       exec(http("Load Category Page")
         .get("#{allCategoriesButton}")
         .check(status.is(200))
-        .check(css("a[href='/product/casual-black-blue']", "class").saveAs("casualBlackGlassesButton"))
+        .check(css("div > div:nth-child(1) > p:nth-child(1) > a ", "href").saveAs("casualBlackGlassesButton"))
       )
         .pause(2)
     }
@@ -23,7 +23,7 @@ object CatalogPage {
       exec(http("Load Product Page")
         .get("#{casualBlackGlassesButton}")
         .check(status.is(200))
-        .check(css("a[href='/cart/add/17']", "data-id").saveAs("addToCart"))
+        .check(css("a.addToCart", "href").saveAs("addToCart"))
       )
         .pause(2)
     }
@@ -33,7 +33,7 @@ object CatalogPage {
         .exec(http("Add Product to Cart")
           .get("#{addToCart}")
           .check(status.is(200))
-          .check(css("a[href='/cart/view']", "class").saveAs("viewCart"))
+          .check(css("p a.btn-success", "href").saveAs("viewCart"))
         )
         .pause(2)
     }

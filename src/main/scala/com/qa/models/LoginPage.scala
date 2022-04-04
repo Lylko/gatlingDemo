@@ -5,9 +5,17 @@ import io.gatling.http.Predef._
 
 object LoginPage {
 
+  lazy val goToLoginPage =
+    exec(http("Load Login Page")
+      .get("/#{loginButton}")
+      .check(status.is(200))
+      .check(css("form[method='post']", "action").saveAs("loginForm"))
+    )
+      .pause(2)
+
   lazy val loginSuccessful =
       exec(http("Successful Login")
-        .post("/#{loginForm}")
+        .post("#{loginForm}")
         .formParam("_csrf", "#{crsfValue}")
         .formParam("username", "#{username}")
         .formParam("password", "#{password}")
