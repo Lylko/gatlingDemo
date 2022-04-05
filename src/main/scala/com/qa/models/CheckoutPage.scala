@@ -6,8 +6,7 @@ import io.gatling.http.Predef._
 object CheckoutPage {
 
   def viewCart = {
-      exec(LoginPage.loginSuccessful)
-      .exec(
+      exec(
         http("Load Cart Page")
           .get("#{viewCart}")
           .check(status.is(200))

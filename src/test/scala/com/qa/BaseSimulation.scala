@@ -31,5 +31,7 @@ class BaseSimulation extends Simulation with ConfigUtil{
     }
   }
 
+  setUp()
+
 
 }

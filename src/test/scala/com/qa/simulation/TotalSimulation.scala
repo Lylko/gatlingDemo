@@ -6,7 +6,9 @@ import com.qa.scenario._
 class TotalSimulation extends BaseSimulation {
 
   setUp(
+    VisitScenario().populationBuilder,
     SuccessfulLoginScenario().populationBuilder,
-    VisitScenario().populationBuilder
+    CompleteCheckoutScenario().populationBuilder,
+    UnsuccessfulLoginScenario().populationBuilder
   )
 }
