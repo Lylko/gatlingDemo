@@ -16,7 +16,6 @@ case class SuccessfulLoginScenario() extends BaseSimulation {
       .exec(HomePage.getHomePage).exitHereIfFailed
       .exec(LoginPage.goToLoginPage).exitHereIfFailed
       .exec(LoginPage.loginSuccessful).exitHereIfFailed
-      .exec(session => session.set("loggedIn", true))
 
   val populationBuilder = setInjectionProfile(successfulScn, getClass.getSimpleName).protocols(httpProtocol)
   setUp(populationBuilder)

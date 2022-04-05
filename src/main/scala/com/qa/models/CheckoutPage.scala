@@ -6,6 +6,9 @@ import io.gatling.http.Predef._
 object CheckoutPage {
 
   def viewCart = {
+    doIf(session => !session("loggedIn").as[Boolean]) {
+      exec(LoginPage.loginSuccessful)
+    }
       exec(
         http("Load Cart Page")
           .get("#{viewCart}")

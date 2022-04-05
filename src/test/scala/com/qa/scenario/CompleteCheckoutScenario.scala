@@ -15,9 +15,6 @@ case class CompleteCheckoutScenario() extends BaseSimulation {
       .exec(CatalogPage.Product.view).exitHereIfFailed
       .exec(CatalogPage.Product.add).exitHereIfFailed
       .exec(CheckoutPage.viewCart).exitHereIfFailed
-      .doIf(session => !session("loggedIn").as[Boolean]) {
-        exec(LoginPage.loginSuccessful)
-      }
       .exec(CheckoutPage.completeCheckout).exitHereIfFailed
 
   val populationBuilder = setInjectionProfile(checkoutScenario, getClass.getSimpleName).protocols(httpProtocol)

@@ -31,7 +31,16 @@ object LoginPage {
         .formParam("password", "#{password}")
         .check(status.is(302))
         .check(css("div.alert alert-danger").is("Invalid credentials"))
-      )
+      ).exec(session => session.set("loggedIn", true))
         .pause(2)
 
+  lazy val logOut = {
+    doIf(session => session("loggedIn").as[Boolean]) {
+      exec(http("Log Out")
+        .post("/#{loginButton}")
+        .check(css("button.btn.btn-secondary").is("Logout"))
+      ).exec(session => session.set("loggedIn", false))
+        .pause(2)
+    }
+  }
 }
