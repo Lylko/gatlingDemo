@@ -8,11 +8,13 @@ import scala.concurrent.duration._
 
 case class UnsuccessfulLoginScenario() extends BaseSimulation {
 
+  val csvFeederLoginWithFails = csv("data/loginFailed.csv").circular
+
   val unsuccessfulScn =
     scenario(getClass.getSimpleName)
+      .feed(csvFeederLoginWithFails)
       .exec(HomePage.getHomePage).exitHereIfFailed
       .exec(LoginPage.goToLoginPage).exitHereIfFailed
-      feed(csvFeederLoginWithFails)
       .exec(LoginPage.loginUnsuccessful).exitHereIfFailed
 
   val populationBuilder = setInjectionProfile(unsuccessfulScn, getClass.getSimpleName).protocols(httpProtocol)
