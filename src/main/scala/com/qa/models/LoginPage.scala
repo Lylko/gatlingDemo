@@ -29,7 +29,7 @@ object LoginPage {
         .formParam("_csrf", "#{crsfValue}")
         .formParam("username", "#{username}")
         .formParam("password", "#{password}")
-        .check(status.is(302))
+        .check(status.is(200))
         .check(css("div.alert alert-danger").is("Invalid credentials"))
       ).exec(session => session.set("loggedIn", true))
         .pause(2)
